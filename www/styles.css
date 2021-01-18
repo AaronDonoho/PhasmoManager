@@ -1,0 +1,8 @@
+.big-container {
+  display: flex;
+  height: 100vh;
+}
+
+#beginHunt {
+  margin: auto;
+}

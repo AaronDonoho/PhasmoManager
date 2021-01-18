@@ -1,11 +1,24 @@
+library(purrr)
 
 server <- function(input, output, session) {
   
   router$server(input, output, session)
   
-  team = reactiveVal(c())
+  team = reactiveVal(c(Hunter$new(randomName())))
+  teamDf = reactiveVal(data.frame())
   ghostSelection = reactiveVal()
   ghost = reactiveVal()
+  slow_tick = reactiveTimer(2000, session)
+  
+  observe({
+    slow_tick()
+    isolate({
+      teamDf(
+        data.frame(
+          "Hunters" = team() %>% map("name") %>% unlist()
+        ))
+    })
+  })
   
   observeEvent(input$ghostSelect, {
     ghostSelection(input$ghostSelect)
@@ -29,6 +42,10 @@ server <- function(input, output, session) {
       p(paste("You report claims the ghost was a", ghostSelection())),
       p(paste("The ghost was a", ghost()))
     )
+  })
+  
+  output$hunterTable = renderTable({
+    teamDf()
   })
   
 }

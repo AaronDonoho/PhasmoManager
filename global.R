@@ -4,6 +4,7 @@ library(shiny)
 library(shinyjs)
 
 source("./classes/ghosts.R")
+source("./classes/people.R")
 
 landing_page = div(
     div(
@@ -13,6 +14,7 @@ landing_page = div(
 )
 
 hunt_page = div(
+    tableOutput("hunterTable"),
     selectInput("ghostSelect", "Ghost Selection", ghosts),
     actionButton("leaveHuntButton", "Leave Hunt")
 )

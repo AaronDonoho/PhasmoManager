@@ -2,9 +2,11 @@ Ghost = R6Class(
   "Ghost",
   public = list(
     type = NULL,
+    fright = NULL,
     
-    initialize = function(type) {
+    initialize = function(type, fright = 1) {
       self$type = type
+      self$fright = fright
     }
   )
 )

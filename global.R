@@ -3,6 +3,7 @@ library(shiny.router)
 library(shiny)
 library(shinyjs)
 
+source("./classes/locations.R")
 source("./classes/ghosts.R")
 source("./classes/people.R")
 
